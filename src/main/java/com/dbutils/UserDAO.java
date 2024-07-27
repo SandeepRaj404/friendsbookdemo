@@ -4,10 +4,7 @@ import com.beans.User;
 import com.beans.UserPost;
 import com.constants.AppContants;
 import com.constants.CommonErros;
-import com.response.beans.PostUploadResponse;
-import com.response.beans.UserLoginRequest;
-import com.response.beans.UserLoginResponse;
-import com.response.beans.UserRegistrationResponse;
+import com.response.beans.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -122,7 +119,7 @@ public class UserDAO {
         }
     }
 
-    public static boolean dpUploaddao(User user) {
+    public static void dpUploaddao(User user , DPUploadResponse response) {
         Connection con=DBUtils.getDbConnection();
         Statement st=null;
         ResultSet rd=null;
@@ -132,12 +129,18 @@ public class UserDAO {
             st = con.createStatement();
             int row =  st.executeUpdate(QUERY);
             if(row>0){
-                return true;
+               response.setStatus(AppContants.SUCCESS_CODE);
+               response.setMessage(AppContants.DP_UPLOAD_SUCESSFULL);
+               response.setData(null);
+            }else{
+                response.setStatus(CommonErros.BAD_REQUEST);
+                response.setMessage(CommonErros.FAILED_TO_UPLOAD_DP);
+                response.setData(null);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
+
     }
     public static void LoginDao(UserLoginRequest loginRequest, UserLoginResponse loginResponse){
         String userEmail=loginRequest.getEmail();
@@ -245,24 +248,7 @@ public class UserDAO {
 
         return -1;
     }
-    public static boolean makePost(User user){
-        Connection con = null;
-        PreparedStatement st = null;
-        ResultSet rs = null;
-        boolean result=false;
-        String QUERY = "insert into user_post values('"+"post"+postCount()+"',"+user.getUserId()+",'"+user.getUserPost().getCaption()+"','"+user.getUserPost().getImage()+"','"+user.getUserPost().getLikes()+"','"+user.getUserPost().getComments()+"','"+user.getUserPost().getShares()+"','"+user.getUserPost().getDateOfPost()+"',null);";
-        con = DBUtils.getDbConnection();
-        try {
-            st = con.prepareStatement(QUERY);
-            int row =  st.executeUpdate();
-            if(row>0){
-                return true;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return false;
-    }
+
     public static ResultSet fetchPost(){
         Connection con = null;
         PreparedStatement st = null;

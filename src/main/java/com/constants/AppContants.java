@@ -18,5 +18,15 @@ public class AppContants {
     public static final String FRIEND_REQUEST_ACCEPTED = "friend request accepted";
     public static final String FRIENDS = "Friends";
     public static final String USER_DP_BASE_ADDR="http://localhost:8080/friendsbook/usersDp/";
+    public static final String DP_UPLOAD_SUCESSFULL = "Dp uploaded successfully";
+    public static final String IMAGE_TYPE_NOT_ALLOWED = "Image type not allowed";
+    public static final String POST_UPLOADED_SUCCESSFULLY = "Dp uploaded successfully";
+    public static final String USER_DPOST_BASE_ADDR="http://localhost:8080/friendsbook/images/";
+    public static final String POST_LIKED = "Post liked";
+    public static final String POST_UNLIKED = "post  unliked";
+    public static final String LIKE_COLOR = "blue";
+    public static final String UNLIKE_COLOR = "black";
+
+
 
 }

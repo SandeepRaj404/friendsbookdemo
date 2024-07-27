@@ -19,7 +19,7 @@ public class ListPeopleYouMayKnow extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        PeoperYouMayKnowResponse response=new PeoperYouMayKnowResponse();
+            PeoperYouMayKnowResponse response=new PeoperYouMayKnowResponse();
         List<User> peopleYouMayKnow= FriendsDAO.getListOfPeopleYouMayKnow(user);
         if(peopleYouMayKnow !=null || peopleYouMayKnow.size()>0){
             response.setMessage("Success");

@@ -3,9 +3,11 @@ com\validator\DpUploadServlet.class
 com\response\beans\FriendRequestSentResponse.class
 com\validator\LoginValidator.class
 com\validator\OTPvalidaterForEmail.class
+com\validator\PostLiked.class
 com\dbutils\PostDAO.class
 com\miscellaneous\SendEmail$1.class
 com\validator\RegistrationController.class
+com\response\beans\LoadFriendsResponse.class
 com\beans\Misc.class
 com\beans\User.class
 com\constants\CommonErros.class
@@ -19,6 +21,7 @@ com\response\beans\AcceptFriendRequestResponse.class
 com\response\beans\UserLoginResponse.class
 com\validator\test.class
 com\miscellaneous\SendEmail.class
+com\validator\LoadProfile.class
 com\response\beans\LoggedInUserBeans.class
 com\beans\UserPost.class
 com\validator\LoginDataValidator.class
@@ -26,10 +29,13 @@ com\validator\OTPVerifyController.class
 com\response\beans\UserLoginRequest.class
 com\response\beans\ShowPostResponse.class
 com\validator\ListFriendRequests.class
+com\validator\MyPosts.class
 com\response\beans\UserRegistrationResponse.class
 com\validator\PostUpload.class
 com\beans\OTPGenerater.class
+com\response\beans\DPUploadResponse.class
 com\constants\AppContants.class
+com\validator\LoadAllFriends.class
 com\response\beans\PeoperYouMayKnowResponse.class
 com\validator\FriendRequestValidator.class
 com\validator\LoadFriends.class
@@ -39,3 +45,4 @@ com\validator\ListPeopleYouMayKnow.class
 com\validator\UserAuthFilter.class
 com\dbutils\DBUtils.class
 com\validator\ShowPosts.class
+com\response\beans\PostLikeResponse.class

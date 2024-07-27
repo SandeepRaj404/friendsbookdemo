@@ -7,6 +7,7 @@ import com.constants.CommonErros;
 import com.response.beans.AcceptFriendRequestResponse;
 import com.response.beans.ListFriendRequestResponse;
 import com.response.beans.FriendRequestSentResponse;
+import com.response.beans.LoadFriendsResponse;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -207,7 +208,52 @@ public class FriendsDAO {
         }
     }
 
+    public static void loadAllFriends(int userId, LoadFriendsResponse response){
+        Connection con=null;
+        Statement st = null;
+        ResultSet rs = null;
+        String QUERY = "SELECT DISTINCT \n" +
+                "    u.userId AS friend_id,\n" +
+                "    u.name AS friend_name,\n" +
+                "    d.imageUrl AS friend_dp\n" +
+                "FROM \n" +
+                "    friends f\n" +
+                "JOIN \n" +
+                "    users u ON f.friend_user_id = u.userId\n" +
+                "JOIN \n" +
+                "    dp_table d ON u.userId = d.userId\n" +
+                "WHERE \n" +
+                "    f.userId ="+userId+";";
 
+        List<User> friends = null;
+        con = DBUtils.getDbConnection();
+        try{
+            st = con.createStatement();
+            rs = st.executeQuery(QUERY);
+            friends =new ArrayList<>();
+            while(rs.next()){
+                User frnds = new User();
+                frnds.setUserId(rs.getInt(1));
+                frnds.setUserName(rs.getString(2));
+                frnds.setDp(AppContants.USER_DP_BASE_ADDR+rs.getString(3));
+                friends.add(frnds);
+            }
+
+            if(friends.size()>0 && friends !=null){
+                response.setStatus(AppContants.SUCCESS_CODE);
+                response.setMessage(AppContants.OK);
+                response.setData(JsonConverter.toJson(friends));
+            }else{
+                response.setStatus(CommonErros.BAD_REQUEST);
+                response.setMessage(CommonErros.FAILED);
+                response.setData(null);
+            }
+
+
+
+        }catch(SQLException se){se.printStackTrace();}
+
+    }
 
 
 

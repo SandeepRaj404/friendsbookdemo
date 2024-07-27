@@ -16,6 +16,16 @@ public class UserPost {
     int shares;
     LocalDate dateOfPost;
     LocalTime timeOfPost;
+     String like_status;
+
+
+    public String getLike_status() {
+        return like_status;
+    }
+
+    public void setLike_status(String like_status) {
+        this.like_status = like_status;
+    }
 
     public int getUserId() {
         return userId;

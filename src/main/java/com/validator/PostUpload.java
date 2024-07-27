@@ -5,6 +5,7 @@ import com.beans.User;
 import com.beans.UserPost;
 import com.constants.AppContants;
 import com.constants.CommonErros;
+import com.dbutils.PostDAO;
 import com.dbutils.UserDAO;
 import com.response.beans.PostUploadResponse;
 import jakarta.servlet.ServletException;
@@ -44,29 +45,22 @@ public class PostUpload extends HttpServlet {
         Part part=req.getPart("picFile");
         String fileType=part.getContentType();
         if(AppContants.ALLOWED_TYPES.contains(fileType)) {
-            String filename = "usrpost"+String.valueOf(user.getUserId())+getExtension(fileType);
+            String filename = "usrpost"+String.valueOf(UserDAO.getCorrespondigId("user_post"))+getExtension(fileType);
             FileOutputStream fout = null;
             InputStream fin = null;
             try {
                 fin = part.getInputStream();
                 byte[] images = new byte[fin.available()];
                 fin.read(images);
-                String path="C:\\\\maven_projects\\\\friendsbookdemo\\\\src\\\\main\\\\webapp\\\\images\\\\"+filename;
-                post.setImage(path);
+                String path="C:\\friendsbookdemo\\src\\main\\webapp\\images\\"+filename;
+                post.setImage(filename);
                 user.setUserPost(post);
                 fout = new FileOutputStream(path);
                 fout.write(images);
-                user.setDp(filename);
+               // user.setDp(filename);
 
-                if(UserDAO.makePost(user)){
-                   response.setStatus(AppContants.SUCCESS_CODE);
-                   response.setMessage("Successfully uploaded");
+                PostDAO.makePost(user,response);
 
-                }else{
-                    response.setError(CommonErros.BAD_REQUEST);
-                    response.setMessage("Upload failed");
-
-                }
 
             }catch (IOException e){
                 e.printStackTrace();
@@ -80,12 +74,13 @@ public class PostUpload extends HttpServlet {
                 }
             }
         }else {
+            response.setStatus(CommonErros.BAD_REQUEST);
             response.setError(CommonErros.INVALID_FILE_TYPE);
             response.setMessage("Invalid file type");
         }
 
         String jsonResponse = JsonConverter.toJson(response);
-        resp.getWriter().print(jsonResponse);
+        resp.getWriter().write(jsonResponse);
 
     }
     public static String getExtension(String type) {

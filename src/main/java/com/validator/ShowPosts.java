@@ -33,6 +33,7 @@ public class ShowPosts extends HttpServlet {
             final int limit =10 ;
             int offset = Integer.parseInt(req.getParameter("offset")); ;
             PostDAO.getPosts(user,limit,offset,response);
+            session.setAttribute("user",user);
         }
 
 

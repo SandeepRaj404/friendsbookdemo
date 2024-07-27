@@ -29,3 +29,34 @@
     }
 }
   
+$(document).ready(function (){
+    $("#uploaddpform").submit(function (event){
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "uploadDp",
+            data:new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                var response=$.parseJSON(data)
+                console.log(response);
+                if(!(response.status === '200')){
+                    showErrorAlert(response.error);
+                }else if(response.status === '200'){
+                    alert("dp uploaded successfully.")
+                }
+            },
+            error: function (data) {
+                alert(data);
+                console.log(data);
+                alert("error");
+            }
+        });
+    });
+
+
+    
+
+
+});

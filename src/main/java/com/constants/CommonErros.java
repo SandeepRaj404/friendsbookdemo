@@ -18,4 +18,7 @@ public class CommonErros {
     public static final String FRIEND_REQUEST_ACCEPTING_FAILED = "FRIEND_REQUEST_ACCEPTING_FAILED";
     public static final String USER_AND_PASSWORD_NOT_CORRECT="USER_AND_PASSWORD_NOT_CORRECT";
     public static final String EXCEPTION_THROWN ="EXCEPTION_THROWN";
+    public static final String FAILED_TO_UPLOAD_DP="Failed to upload Dp";
+    public static final String POST_UPLOAD_FAILED = "post upload failed.";
+    public static final String FAILED_TO_UPDATE_LIKE_DUE_TO_EXCEPTION = "post upload successful.";
 }

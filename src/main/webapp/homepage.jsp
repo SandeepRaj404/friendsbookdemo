@@ -1,5 +1,6 @@
+<%@ page import="com.beans.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,33 +27,19 @@
 </head>
 <body>
    <jsp:include page="header.jsp" />
+    <%
+        /* session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            session.invalidate();
+        }else{
+            session.setAttribute("user", user);
+        }*/
 
+    %>
     <!--upload post-->
     <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Post A Picture </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-          <form id="postForm" enctype="multipart/form-data">
-        <div class="modal-body">
-          <input type="file" name = "picFile" id="dpFile"  onchange="previewImage()">
 
-          <div class="img">
-            <input  name="caption" type="text" id="pictureCaption" class="form-control" placeholder="Say something about this photo..." style="visibility: hidden;">
-            <img id="dpImage" class="img-thumbnail"  src="" alt="..." style="width: 200px;height: 200px;">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="newPost">Post</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
     <!--Upload post - end-->
 
 
@@ -62,48 +49,10 @@
     <div id="post" class="d-flex flex-column align-items-center justify-content-center">
       
         
-        <div class="card mt-3" style="width: 30rem;">
-          <div class="card-header">
-            <a href="#"><img src="usersDp/usrdp12.jpg" alt="User Profile" class="" width="40" height="40" style="float: left;border-radius: 30%;border: 1px solid black;"></a>
-            <span class="ms-2">Username</span>
-          </div>
-          <img src="images/usrpost4.png" class="card-img-top" alt="..." style="width: 30rem;height: 20rem;">
-          <div class="card-body">
-            <div class = "d-flex flex-row">
-              <div class = "">0 Likes</div>
-              <div class = " ms-5">0 Comments</div>
-             </div>
-            <hr>
-           <div class = "d-flex flex-row">
-                <div class = ""><a href=""><i class = "material-icons">thumb_up</i></a></div>
-                <div class = " ms-1">Like</div>
-                <div class = " ms-5"><a href=""><i class = "material-icons">comment</i></a></div>
-                <div class = " ms-1">comment</div>
-               </div>
-          </div>
-        </div>
+        
        
         <!--Tesing code-->
-        <div class="card mt-3" style="width: 30rem;">
-          <div class="card-header">
-            <a href="#"><img src="usersDp/usrdp12.jpg" alt="User Profile" class="" width="40" height="40" style="float: left;border-radius: 30%;border: 1px solid black;"></a>
-            <span class="ms-2">Username</span>
-          </div>
-          <img src="images/usrpost4.png" class="card-img-top" alt="..." style="width: 30rem;height: 20rem;">
-          <div class="card-body">
-            <div class = "d-flex flex-row">
-              <div class = "">0 Likes</div>
-              <div class = " ms-5">0 Comments</div>
-             </div>
-            <hr>
-           <div class = "d-flex flex-row">
-                <div class = ""><a href=""><i class = "material-icons">thumb_up</i></a></div>
-                <div class = " ms-1">Like</div>
-                <div class = " ms-5"><a href=""><i class = "material-icons">comment</i></a></div>
-                <div class = " ms-1">comment</div>
-               </div>
-          </div>
-        </div>
+       
 
         
         <!--Tesing code-->

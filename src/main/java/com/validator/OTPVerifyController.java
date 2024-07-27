@@ -27,6 +27,7 @@ public class OTPVerifyController extends HttpServlet {
                 User user=(User)session.getAttribute("user");
                 UserDAO.registerUsersss(user,response);
                 user.setDp(AppContants.USER_DP_BASE_ADDR+user.getDp());
+                session.setAttribute("user",user);
                 response.setMessage("User Registered Successfuly");
                 response.setStatus("200");
             }else{

@@ -111,6 +111,7 @@ $(document).ready(function() {
                 button.text(response.data);
                 button.css("background-color","white");
                 button.css("color","blue");
+                $(this).attr("disabled", "disabled");
 
                 
             }else if(response.status === "400"){

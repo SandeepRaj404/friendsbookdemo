@@ -14,6 +14,7 @@ public class User {
     private UserPost userPost;
     private LocalDate start_date;
 
+
     public LocalDate getStart_date() {
         return start_date;
     }

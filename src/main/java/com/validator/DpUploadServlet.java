@@ -1,9 +1,12 @@
 package com.validator;
 
+import com.beans.JsonConverter;
 import com.beans.User;
 import com.constants.AppContants;
+import com.constants.CommonErros;
 import com.dbutils.UserDAO;
 import com.mysql.cj.exceptions.StreamingNotifiable;
+import com.response.beans.DPUploadResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,10 +22,14 @@ import java.io.InputStream;
 public class DpUploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     	User user = (User) req.getSession().getAttribute("user");
+        DPUploadResponse response = new DPUploadResponse();
         if (user == null) {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
+
+
         Part part=req.getPart("file");
         String fileType=part.getContentType();
         if(AppContants.ALLOWED_TYPES.contains(fileType)) {
@@ -33,16 +40,13 @@ public class DpUploadServlet extends HttpServlet {
                 fin = part.getInputStream();
                 byte[] images = new byte[fin.available()];
                 fin.read(images);
-                String path="C:\\maven_projects\\friendsbook\\src\\main\\webapp\\usersDp\\"+filename;
+                String path="C:\\friendsbookdemo\\src\\main\\webapp\\usersDp\\"+filename;
                 fout = new FileOutputStream(path);
                 fout.write(images);
                 user.setDp(filename);
-                if(UserDAO.dpUploaddao(user)){
-                    resp.getWriter().println("image saved to database");
-                }else{
-                    resp.getWriter().println("image not  saved to database");
 
-                }
+                UserDAO.dpUploaddao(user,response);
+
                 user.setDp(AppContants.USER_DP_BASE_ADDR+user.getDp());
 
 
@@ -58,10 +62,12 @@ public class DpUploadServlet extends HttpServlet {
                 }
             }
         }else {
-        	System.out.println("Not Allowed");
+                response.setStatus(CommonErros.BAD_REQUEST);
+                response.setMessage(AppContants.IMAGE_TYPE_NOT_ALLOWED);
+                response.setData(null);
         }
         
-        
+        resp.getWriter().write(JsonConverter.toJson(response));
 
     }
     

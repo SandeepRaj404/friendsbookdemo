@@ -24,7 +24,7 @@ public class ShowPosts extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
         ShowPostResponse response = new ShowPostResponse();
         if(user == null) {

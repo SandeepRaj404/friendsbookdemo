@@ -9,7 +9,7 @@ function previewImage() {
         // Validate image type (optional)
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         if (!allowedTypes.includes(imageFile.type)) {
-            alert('Please select a valid image file (JPEG, PNG, or GIF)');
+            //('Please select a valid image file (JPEG, PNG, or GIF)');
             return;
         }
 
@@ -44,16 +44,16 @@ $(document).ready(function (){
                 var response=$.parseJSON(data)
                 console.log(response);
                 if(!(response.status === '200')){
-                    showErrorAlert(response.error);
+                    showError//(response.error);
                 }else if(response.status === '200'){
-                    alert("post uploaded successfully.");
+                    //("post uploaded successfully.");
                     location.reload();
                 }
             },
             error: function (data) {
-                alert(data);
+                //(data);
                 console.log(data);
-                alert("error");
+                //("error");
             }
         });
     });
@@ -71,6 +71,27 @@ $(document).ready(function (){
             window.location.href = 'loadprofile?userId=' + encodeURIComponent(userId);
       
     });
+
+    $(document).on("click", "#logoutBtn", function(){
+        console.log("logout clicked.");
+        //var postId = $(this).data("id");
+        //var button = $(this);
+        $.ajax({
+            type: 'GET',
+            url: "logout",
+            data: {},
+            success: function (data) {
+                console.log("logged out");
+               // window.location.href = "index.jsp"
+              
+            },
+            error: function (data) {
+                //("An error occurred: " + data);
+                console.log(data);
+            }
+        });
+    });
+
 
 
 

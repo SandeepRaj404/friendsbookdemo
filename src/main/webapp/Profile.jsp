@@ -17,6 +17,10 @@
         background-color: gainsboro;
        
       }
+      a{
+        text-decoration: none;
+    
+      }
         .cover-photo {
             width: 100%;
             height: 300px;
@@ -48,13 +52,7 @@
             font-size: 1.5rem;
         
         }
-        .postcontainer{
-            overflow: hidden;
-        }
-        #post{
-            overflow-y: scroll;
-            height: 700px;
-        }
+       
        
     </style>
 </head>
@@ -100,25 +98,6 @@
             </div>
           </nav>
     </div>
-    <div class="container mt-3" style="border: 1px none black;">
-        <div class="row">
-            <div class="col" style="background-color: white;">
-                <div class="justify-content-center" id="friends">
-                    <div id="About" class="container" >
-                        <b>About</b>
-                        <ul style="list-style: none;">
-                            <li><i class = "material-icons mt-4">school</i>studies at kristu jayanti college</li>
-                            <li><i class = "material-icons mt-4">home</i>lives in banaglore </li>
-                            <li><i class = "material-icons mt-4">location_on</i>From Patna</li>
-                            <li><i class = "material-icons mt-4">favorite</i>Single</li>
-                            <li><i class = "material-icons mt-4">date_range</i>1 year</li>
-                            <li><i class = "material-icons mt-4">cake</i>2004-01-14</li>
-
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="postcontainer col" style="background-color: white;">
                 <div id="post" class="container d-flex flex-column align-items-center justify-content-center">
 
@@ -177,7 +156,62 @@
     </div>
 </div>
 
+<!--Modal for likes and comment load-->
+
+<div class="modal fade" id="comments"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="overflow-y: scroll;height: 300px;" id="commentBody">
+           
+            <!--test-->
+            
+            <!--test ends-->
+            
+        </div>
+        <div class="modal-footer">
+            <input id="commentText" type="text" class="form-control" style="box-shadow: none;" placeholder="comment your thoughts on this...">
+            
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button id="commentSend" type="button" class="btn btn-primary">Comment->></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="likesInfo"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Likes</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="overflow-y: scroll;height: 300px;" id="likesBody">
+           
+            <!--test-->
+            
+            <!--test ends-->
+            
+        </div>
+        <div class="modal-footer">
+            
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!---->
+
 
     <script src="Profile.js"></script>
+    
 </body>
 </html>

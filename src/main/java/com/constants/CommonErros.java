@@ -1,5 +1,7 @@
 package com.constants;
 
+import com.mysql.cj.exceptions.StreamingNotifiable;
+
 public class CommonErros {
     public static final String INVALID_NAME="Invalid Name";
     public static final String INVALID_EMAIL="Invalid Email";
@@ -21,4 +23,8 @@ public class CommonErros {
     public static final String FAILED_TO_UPLOAD_DP="Failed to upload Dp";
     public static final String POST_UPLOAD_FAILED = "post upload failed.";
     public static final String FAILED_TO_UPDATE_LIKE_DUE_TO_EXCEPTION = "post upload successful.";
+    public static final String FAILED_TO_LOAD_COMMENTS = "failed to load comments";
+    public  static final String FAILED_TO_POST_COMMENTS = "failed to post comments";
+    public static final String FAILED_TO_LOAD_LIKES = "failed to load likes";
+    public static final String FAILED_TO_UNFRIEND = "failed to unfriend";
 }

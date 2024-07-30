@@ -8,6 +8,7 @@ import com.constants.CommonErros;
 import com.dbutils.PostDAO;
 import com.dbutils.UserDAO;
 import com.response.beans.PostUploadResponse;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,7 +33,7 @@ public class PostUpload extends HttpServlet {
         ((HttpServletResponse) resp).addHeader("Access-Control-Allow-Methods",
                 "GET, OPTIONS, HEAD, PUT, POST, DELETE");
 
-        User user = (User) req.getSession().getAttribute("user");
+        User user = (User) req.getSession(false).getAttribute("user");
         if (user == null) {
             resp.sendRedirect("index.jsp");
         }
@@ -52,7 +53,9 @@ public class PostUpload extends HttpServlet {
                 fin = part.getInputStream();
                 byte[] images = new byte[fin.available()];
                 fin.read(images);
-                String path="C:\\friendsbookdemo\\src\\main\\webapp\\images\\"+filename;
+                ServletContext con = getServletContext();
+                String imagePath = con.getInitParameter("UserPostImagePath");
+                String path=imagePath + filename;
                 post.setImage(filename);
                 user.setUserPost(post);
                 fout = new FileOutputStream(path);

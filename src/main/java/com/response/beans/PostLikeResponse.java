@@ -5,6 +5,15 @@ public class PostLikeResponse {
     private String message;
     private String status;
     private String data;
+    private String buttonColor;
+
+    public String getButtonColor() {
+        return buttonColor;
+    }
+
+    public void setButtonColor(String buttonColor) {
+        this.buttonColor = buttonColor;
+    }
 
     public PostLikeResponse() {
     }

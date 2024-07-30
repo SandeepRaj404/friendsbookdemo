@@ -7,6 +7,7 @@ import com.constants.CommonErros;
 import com.dbutils.UserDAO;
 import com.mysql.cj.exceptions.StreamingNotifiable;
 import com.response.beans.DPUploadResponse;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +24,7 @@ public class DpUploadServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    	User user = (User) req.getSession().getAttribute("user");
+    	User user = (User) req.getSession(false).getAttribute("user");
         DPUploadResponse response = new DPUploadResponse();
         if (user == null) {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
@@ -40,7 +41,9 @@ public class DpUploadServlet extends HttpServlet {
                 fin = part.getInputStream();
                 byte[] images = new byte[fin.available()];
                 fin.read(images);
-                String path="C:\\friendsbookdemo\\src\\main\\webapp\\usersDp\\"+filename;
+                ServletContext con = getServletContext();
+                String dpPath = con.getInitParameter("UserdpPath");
+                String path=dpPath+filename;
                 fout = new FileOutputStream(path);
                 fout.write(images);
                 user.setDp(filename);

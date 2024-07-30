@@ -15,11 +15,34 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
+      a{
+        text-decoration: none;
+      }
       .col-centered {
   float: none;
   margin-right: auto;
   margin-left: auto;
 }
+
+.modal-header.position-fixed {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    
+}
+
+/* Footer fixed to the bottom of the modal */
+.modal-footer.position-fixed {
+    position: sticky;
+    bottom: 0;
+    background-color: inherit;
+    
+}
+.mt-6{
+  margin-top: 100px;
+}
+
+
     </style>
     <script>
       
@@ -46,7 +69,7 @@
     <!--Post display-->
    
 
-    <div id="post" class="d-flex flex-column align-items-center justify-content-center">
+    <div id="post" class="d-flex flex-column align-items-center justify-content-center mt-6">
       
         
         
@@ -59,7 +82,63 @@
 
      
     </div>
+
+   
+      
+      <!-- Modal -->
+      <div class="modal fade" id="comments"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="overflow-y: scroll;height: 300px;" id="commentBody">
+               
+                <!--test-->
+                
+                <!--test ends-->
+                
+            </div>
+            <div class="modal-footer">
+                <input id="commentText" type="text" class="form-control" style="box-shadow: none;" placeholder="comment your thoughts on this..." required>
+                
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button id="commentSend" type="button" class="btn btn-primary">Comment->></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="likesInfo"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Likes</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="overflow-y: scroll;height: 300px;" id="likesBody">
+               
+                <!--test-->
+                
+                <!--test ends-->
+                
+            </div>
+            <div class="modal-footer">
+                
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    
   
 <script src="HomePage.js"></script>
+
 </body>
 </html>

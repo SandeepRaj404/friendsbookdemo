@@ -27,9 +27,9 @@ $(document).ready(function() {
       });
     },
     error: function (data) {
-        alert(data);
+        //(data);
         console.log(data);
-        alert("error");
+        //("error");
     }
 });
  
@@ -62,9 +62,9 @@ $(document).ready(function() {
           });
         },
         error: function (data) {
-            alert(data);
+            //(data);
             console.log(data);
-            alert("error");
+            //("error");
         }
     });
 //}
@@ -86,11 +86,11 @@ $(document).ready(function() {
                   button.text(response.data)
                   
               }else if(response.status === "400"){
-                alert("request not sent");
+                //("request not sent");
               }
           },
           error: function (data) {
-              alert("An error occurred: " + data);
+              //("An error occurred: " + data);
               console.log(data);
           }
       });
@@ -115,11 +115,11 @@ $(document).ready(function() {
 
                 
             }else if(response.status === "400"){
-              alert("request not sent");
+              //("request not sent");
             }
         },
         error: function (data) {
-            alert("An error occurred: " + data);
+            //("An error occurred: " + data);
             console.log(data);
         }
     });

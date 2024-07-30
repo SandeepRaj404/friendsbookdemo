@@ -4,10 +4,7 @@ import com.beans.JsonConverter;
 import com.beans.User;
 import com.constants.AppContants;
 import com.constants.CommonErros;
-import com.response.beans.AcceptFriendRequestResponse;
-import com.response.beans.ListFriendRequestResponse;
-import com.response.beans.FriendRequestSentResponse;
-import com.response.beans.LoadFriendsResponse;
+import com.response.beans.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -24,7 +21,7 @@ public class FriendsDAO {
         try {
             con=DBUtils.getDbConnection();
             st= con.createStatement();
-            String query="select users.userId,users.name,users.gender,users.dob,users.email,dp.imageUrl from users\n" +
+            String query="select distinct users.userId,users.name,users.gender,users.dob,users.email,dp.imageUrl from users\n" +
                     "left join dp_table dp on dp.userId=users.userId\n" +
                     "where users.userId not in (select friend_user_id from friends where userId="+user.getUserId()
                     +" union select userId from friend_request where friend_userId="+user.getUserId()
@@ -132,7 +129,7 @@ public class FriendsDAO {
         Connection con=null;
         Statement st = null;
         ResultSet rs = null;
-        String QUERY = " select u.userId,u.name,dp.imageUrl from users u left join dp_table dp on u.userId = dp.userId where u.userId in(select friend_userId from friend_request where userId ="+userId+" and status =0);";
+        String QUERY = " select distinct u.userId,u.name,dp.imageUrl from users u left join dp_table dp on u.userId = dp.userId where u.userId in(select friend_userId from friend_request where userId ="+userId+" and status =0);";
 
 
         List<User> requests  = null;
@@ -255,6 +252,42 @@ public class FriendsDAO {
 
     }
 
+    public static void unfriend(int userId,int friend_user_id, UnfriendResponse response){
+        Connection con = null;
+        PreparedStatement pst1 = null;
+        PreparedStatement pst2 = null;
+        PreparedStatement pst3 = null;
+        int row = 0;
+
+        String QUERY = "delete from friends where userId= " + userId + " and  friend_user_id= " + friend_user_id + ";";
+        String QUERY2 = "delete from friends where userId= " + friend_user_id + " and  friend_user_id= " + userId + ";";
+        String QUERY3 = "delete from friend_request where (userId= " + userId + " and  friend_userId= " + friend_user_id +") or (userId ="+friend_user_id+" and friend_userId= "+userId+");";
+        con = DBUtils.getDbConnection();
+        try{
+            con.setAutoCommit(false);
+            pst1 = con.prepareStatement(QUERY);
+            pst2 = con.prepareStatement(QUERY2);
+            pst3 = con.prepareStatement(QUERY3);
+            pst1.executeUpdate();
+            pst2.executeUpdate();
+            pst3.executeUpdate();
+            con.commit();
+            response.setStatus(AppContants.SUCCESS_CODE);
+            response.setMessage(AppContants.UNFRIENDED_SUCESSFULLY);
+            response.setData(AppContants.UNFRIEND);
+        }catch (SQLException se){
+            try {
+                con.rollback();
+                response.setStatus(CommonErros.BAD_REQUEST);
+                response.setMessage(CommonErros.FAILED_TO_UNFRIEND);
+                response.setData(null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            se.printStackTrace();
+        }
+
+    }
 
 
 

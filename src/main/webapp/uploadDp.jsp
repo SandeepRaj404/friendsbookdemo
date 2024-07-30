@@ -13,20 +13,12 @@
     <link rel="stylesheet" href="uploadDp.css">
    
     <script>
-        function previewImage() {
-            const fileInput = document.getElementById('profileImage');
-            const preview = document.getElementById('preview');
-            if (fileInput.files && fileInput.files[0]) {
-                preview.src = URL.createObjectURL(fileInput.files[0]);
-            } else {
-                preview.src = ''; // Clear preview if no file selected
-            }
-        }
+       
     </script>
 </head>
 <body>
    <jsp:include page="header.jsp" />
-    <form id="uploaddpform" enctype="multipart/form-data">
+    <form id="uploaddpform" enctype="multipart/form-data" style="margin-top: 100px;">
 	<div class="container col-md-6 mt-4">
         <div class="mb-3">
             <label for="profileImage" class="form-label">Upload Profile Picture</label>

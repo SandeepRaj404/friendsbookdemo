@@ -31,7 +31,7 @@ public class LoginValidator extends HttpServlet {
         email = req.getParameter("email");
         password = req.getParameter("password");
         UserLoginResponse loginResponse=null;
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(true);
         if(email!=null && email.matches(AppContants.EMAIL_REGEX) && password!=null && password.length()>7){
             UserLoginRequest loginRequest=new UserLoginRequest(email,password);
             loginResponse=new UserLoginResponse();

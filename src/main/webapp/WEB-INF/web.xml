@@ -9,4 +9,16 @@
         <welcome-file>default.jsp</welcome-file>
         <welcome-file>default.htm</welcome-file>
     </welcome-file-list>
+
+    <context-param>
+        <param-name>UserdpPath</param-name>
+        <param-value>C:\friendsbookdemo\src\main\webapp\usersDp\</param-value>
+    </context-param>
+    <context-param>
+        <param-name>UserPostImagePath</param-name>
+        <param-value>C:\friendsbookdemo\src\main\webapp\images\</param-value>
+    </context-param>
+
+
+
 </web-app>

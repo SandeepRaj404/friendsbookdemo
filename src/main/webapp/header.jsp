@@ -39,7 +39,7 @@
 <nav  class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" style="color:white">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color: blue;">
-          <i id="logo" class="fa fa-2x fa-facebook">riendsBook</i>
+          <i id="logo" class="fa fa-facebook">riendsBook</i>
         </a>
         <div></div>
         <span class="ms-2"><%= username%>
@@ -52,20 +52,20 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar" >
       <ul class="navbar-nav">
         <li class="nav-item ms-5">
-          <a id="home" class="nav-link" href="#" title="Message currently not in service"><i class="material-icons" style="font-size: 40px;">home</i></a>
+          <a id="home" class="nav-link" href="#" title="Message currently not in service"><i class="material-icons" style="font-size: 30px;">home</i></a>
         </li>
 
         <li class="nav-item ms-5">
-          <a class="nav-link" href="#" title="Make Post" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons" style="font-size: 40px;">post_add</i></a>
+          <a class="nav-link" href="#" title="Make Post" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons" style="font-size: 30px;">post_add</i></a>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link" href="makefriends.jsp" title="Add friends"><i class="material-icons" style="font-size: 40px;">group_add</i></a>
+          <a class="nav-link" href="makefriends.jsp" title="Add friends"><i class="material-icons" style="font-size: 30px;">group_add</i></a>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link" href="#" title="setting"><i class="material-icons" style="font-size: 40px;">settings</i></a>
+          <a class="nav-link" href="#" title="setting"><i class="material-icons" style="font-size: 30px;">settings</i></a>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link" href="#" title="Message currently not in service"><i class="material-icons" style="font-size: 40px;">chat</i></a>
+          <a class="nav-link" href="#" title="Message currently not in service"><i class="material-icons" style="font-size: 30px;">chat</i></a>
         </li>
         <li class="nav-item dropdown ms-5">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -77,7 +77,9 @@
           <ul class="dropdown-menu">
             <li><button type="button" data-id="<%= user.getUserId()%>" id="profile" class="dropdown-item" >Profile</button></li>
             <li><a class="dropdown-item" href="#">setting</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            
+            <li><button type="button" id="logoutBtn" class="dropdown-item" >Logout</button></li>
+            
           </ul>
         </li>
       </ul>

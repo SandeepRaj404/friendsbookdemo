@@ -26,6 +26,11 @@ public class AppContants {
     public static final String POST_UNLIKED = "post  unliked";
     public static final String LIKE_COLOR = "blue";
     public static final String UNLIKE_COLOR = "black";
+    public static final String COMMENTS_LOADED_SUCCESSFULLY = "comments loaded successfully";
+    public static final String COMMENTS_POSTED_SUCCESSFULLY = "comments posted successfully";
+    public static final String LIKES_LOADED_SUCCESFULLY = "likes loaded successfully";
+    public static final String UNFRIENDED_SUCESSFULLY = "unfriended successfully";
+    public static final String UNFRIEND = "unfriended";
 
 
 

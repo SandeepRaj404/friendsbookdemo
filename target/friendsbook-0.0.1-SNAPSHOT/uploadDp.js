@@ -1,7 +1,7 @@
 
   function previewImage() {
     // Get the selected image file
-    const imageFile = document.getElementById('dpFile').files[0];
+    const imageFile = document.getElementById('profileImage').files[0];
 
     // Check if a file is selected
     if (imageFile) {
@@ -9,7 +9,7 @@
         // Validate image type (optional)
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         if (!allowedTypes.includes(imageFile.type)) {
-            alert('Please select a valid image file (JPEG, PNG, or GIF)');
+            //('Please select a valid image file (JPEG, PNG, or GIF)');
             return;
         }
 
@@ -18,7 +18,7 @@
 
         // Handle image load event
         reader.onload = function (e) {
-            const imagePreview = document.getElementById('dpImage');
+            const imagePreview = document.getElementById('preview');
             imagePreview.src = e.target.result;
             // Enable the upload button (optional)
             document.querySelector('button').disabled = false;
@@ -42,15 +42,19 @@ $(document).ready(function (){
                 var response=$.parseJSON(data)
                 console.log(response);
                 if(!(response.status === '200')){
-                    showErrorAlert(response.error);
-                }else if(response.status === '200'){
-                    alert("dp uploaded successfully.")
+                   // showError//(response.error);
+                   alert("dp uploaded sucessfully.")
+                   location.href = "index.jsp";
+                }else if(!(response.status === '200')){
+                    //("dp uploaded successfully.")
+                    alert("can't upload dp");
+                    location.href = "index.jsp";
                 }
             },
             error: function (data) {
-                alert(data);
+                //(data);
                 console.log(data);
-                alert("error");
+                //("error");
             }
         });
     });

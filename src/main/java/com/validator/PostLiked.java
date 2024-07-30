@@ -18,7 +18,7 @@ public class PostLiked extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
         PostLikeResponse response = new PostLikeResponse();
 
@@ -29,9 +29,11 @@ public class PostLiked extends HttpServlet {
             String postId = (req.getParameter("userPostId"));
             if(PostDAO.isPostLiked(userId, postId)){
                 PostDAO.unlikePost(userId,postId,response);
+
             }else{
                 PostDAO.likePost(userId,postId,response);
             }
+            PostDAO.countLikes(postId,response);
         }
 
         resp.getWriter().write(JsonConverter.toJson(response));

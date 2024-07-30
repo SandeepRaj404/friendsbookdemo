@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LoadAllFriends extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
         LoadFriendsResponse response = null;
         if (user == null) {

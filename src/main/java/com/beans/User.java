@@ -13,7 +13,24 @@ public class User {
     private String dp;
     private UserPost userPost;
     private LocalDate start_date;
+    private Comments comments;
+    private Likes likes;
 
+    public Likes getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Likes likes) {
+        this.likes = likes;
+    }
+
+    public Comments getComments() {
+        return comments;
+    }
+
+    public void setComments(Comments comments) {
+        this.comments = comments;
+    }
 
     public LocalDate getStart_date() {
         return start_date;
